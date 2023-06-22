@@ -1,29 +1,24 @@
-﻿namespace Banking.Domain
+﻿namespace Banking.Domain;
+
+public class Account
 {
-    public class Account
+    private decimal _balance = 5000; // Fields class level variable
+    public void Deposit(decimal amountToDeposit)
     {
-        private decimal _balance = 5000;
-        public void Deposit(decimal amountToDeposit)
-        {
-            _balance += amountToDeposit;
-        }
+        _balance += amountToDeposit;
+    }
 
-        public decimal GetBalance()
-        {
-            return _balance;
+    public decimal GetBalance()
+    {
+        return _balance; // "Sliming"
+    }
 
-        }
-
-        public void Withdraw(decimal amountToWithdraw)
+    public void Withdraw(decimal amountToWithdraw)
+    {
+        if(amountToWithdraw > _balance)
         {
-            if(amountToWithdraw >= _balance)
-            {
-                return;
-            }
+            throw new OverdraftException();
         }
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Hello, World!");
-        }
+       _balance -= amountToWithdraw;
     }
 }
