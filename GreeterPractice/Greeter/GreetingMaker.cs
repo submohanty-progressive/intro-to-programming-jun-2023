@@ -19,6 +19,23 @@ namespace Greeter
             return true;
         }
 
+        public void ListOfBadNames() // need to figure out what exactly are the bad names (who decides what is bad and what isn't)
+        {
+
+        }
+
+        public string NotificationOfTroll(string[] invalidNames)
+        {
+            DateTime currentTime = DateTime.UtcNow;
+            string timeStamp = (((DateTimeOffset)currentTime).ToUnixTimeSeconds()).ToString();
+            string convertedNames = "";
+            foreach(string name in invalidNames)
+            {
+                convertedNames += name;
+            }
+            return "NotifyOfPossibleTroll([" + timeStamp + "] User Used All Invalid Names: (" + convertedNames + ")";
+        }
+
         public string Greet(params string[] Params) // requirement 5 - arbritrary list of names
         {
             string builder = "";
